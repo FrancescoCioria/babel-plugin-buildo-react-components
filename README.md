@@ -22,7 +22,10 @@ add "buildo-react-components" in your `.babelrc`
   plugins: ["buildo-react-components"]
 }
 ```
-
+or, if you're calling `babel` from the command line
+```
+babel --plugins=buildo-react-components
+```
 ## Caveats
 imports from the `/lib` folder are not supported yet so you must include `/buildo-react-components/` in `webpack`
 
