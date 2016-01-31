@@ -41,11 +41,11 @@ const imports = [];
 
 export default function ({ Plugin, types: t }) {
 
-  function addImport(file, source, imported, name, isDefault) {
+  function addImport(file, source, imported, name, isDefaultImport) {
     const _source = file.resolveModuleSource(source);
 
     let specifiers;
-    if (isDefault) {
+    if (isDefaultImport) {
       specifiers = [t.importDefaultSpecifier(t.identifier(name))];
     } else {
       specifiers = [t.importSpecifier(t.identifier(name), t.identifier(imported))];
@@ -53,6 +53,7 @@ export default function ({ Plugin, types: t }) {
     const declar = t.importDeclaration(specifiers, t.literal(_source));
     declar._blockHoist = 3;
 
+    // prepend import to file body
     file.path.unshiftContainer('body', declar);
   }
 
@@ -60,7 +61,6 @@ export default function ({ Plugin, types: t }) {
     visitor: {
 
       Program: {
-
         exit (node, parent, scope, file) {
           if (!t.isProgram(node)) {
             return;
@@ -70,10 +70,10 @@ export default function ({ Plugin, types: t }) {
             if (!components[imported] && !utils[imported]) {
               throw new Error(`${imported} is not a valid export of buildo-react-components`);
             }
-            const isDefault = !!components[imported];
-            const folder = isDefault ? components[imported] : utils[imported];
+            const isDefaultImport = !!components[imported];
+            const folder = isDefaultImport ? components[imported] : utils[imported];
             const path = ['buildo-react-components', 'lib', folder].join('/');
-            addImport(file, path, imported, local, isDefault);
+            addImport(file, path, imported, local, isDefaultImport);
           });
 
         }
@@ -81,7 +81,6 @@ export default function ({ Plugin, types: t }) {
 
       ImportDeclaration: {
         exit (node) {
-
           if (node.source.value.indexOf('buildo-react-components') === -1) {
             return;
           }
@@ -89,6 +88,7 @@ export default function ({ Plugin, types: t }) {
           const importSpecifiers = node.specifiers.filter(t.isImportSpecifier);
           if (importSpecifiers.length) {
             importSpecifiers.forEach(s => imports.unshift({ local: s.local.name, imported: s.imported.name }));
+            // remove node -> we'll replace it on Program.exit with the correct one
             this.dangerouslyRemove();
           }
 
