@@ -20,6 +20,7 @@
   "homepage": "https://github.com/buildo/babel-plugin-buildo-react-components",
   "devDependencies": {
     "babel-eslint": "^4.1.6",
+    "buildo-react-components": "github:buildo/react-components",
     "eslint-config-buildo": "github:buildo/eslint-config",
     "mocha": "^2.2.5"
   },
