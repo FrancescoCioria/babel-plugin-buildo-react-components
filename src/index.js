@@ -47,8 +47,14 @@ export default function ({ Plugin, types: t }) {
 
       ImportDeclaration: {
         exit(node) {
-          if (node.source.value.indexOf('buildo-react-components') === -1) {
+          const value = node.source.value;
+          if (value.indexOf('buildo-react-components') === -1) {
             return;
+          }
+
+          const importDefaultSpecifiers = node.specifiers.filter(t.isImportDefaultSpecifier);
+          if (importDefaultSpecifiers.length && (value === 'buildo-react-components' || value === 'buildo-react-components/lib' || value === 'buildo-react-components/src')) {
+            throw new Error(`the import of whole buildo-react-components is forbidden`);
           }
 
           const importSpecifiers = node.specifiers.filter(t.isImportSpecifier);
