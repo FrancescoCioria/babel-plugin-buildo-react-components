@@ -60,7 +60,17 @@ export default function ({ Plugin, types: t }) {
           const importSpecifiers = node.specifiers.filter(t.isImportSpecifier);
           if (importSpecifiers.length) {
             importSpecifiers.forEach(s => imports.unshift({ local: s.local.name, imported: s.imported.name }));
-            // remove node -> we'll replace it on Program.exit with the correct one
+          }
+
+          // return
+          if (importSpecifiers.length && importDefaultSpecifiers.length) {
+            // remove non-default imports -> we'll replace them on Program.exit
+            return {
+              ...node,
+              specifiers: importDefaultSpecifiers
+            };
+          } else if (!importDefaultSpecifiers.length) {
+            // remove node -> we'll replace it on Program.exit
             this.dangerouslyRemove();
           }
 
