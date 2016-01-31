@@ -1,0 +1,41 @@
+{
+  "name": "babel-plugin-buildo-react-components",
+  "version": "0.0.1",
+  "description": "Babel plugin to avoid cherry-pick imports from buildo-react-components",
+  "main": "lib/index.js",
+  "scripts": {
+    "lint": "eslint src test --fix",
+    "build": "babel-plugin build",
+    "test": "mocha --compilers js:babel/register"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/buildo/babel-plugin-buildo-react-components.git"
+  },
+  "author": "Francesco Cioria <francesco@buildo.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/buildo/babel-plugin-buildo-react-components/issues"
+  },
+  "homepage": "https://github.com/buildo/babel-plugin-buildo-react-components",
+  "devDependencies": {
+    "babel-eslint": "^4.1.6",
+    "eslint-config-buildo": "github:buildo/eslint-config",
+    "mocha": "^2.2.5"
+  },
+  "tags": [
+    "babel-plugin",
+    "buildo",
+    "react",
+    "buildo-react-components"
+  ],
+  "keywords": [
+    "babel-plugin",
+    "buildo",
+    "react",
+    "buildo-react-components"
+  ],
+  "dependencies": {
+    "babel": "^5.8.23"
+  }
+}
