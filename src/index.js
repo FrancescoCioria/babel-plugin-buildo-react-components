@@ -88,12 +88,20 @@ export default function ({ Plugin, types: t }) {
             return;
           }
 
-          const importDefaultSpecifiers = node.specifiers.filter(t.isImportDefaultSpecifier);
+          const _imports = node.specifiers.reduce((acc, s) => (
+            {
+              ...acc,
+              importDefaultSpecifiers: acc.importDefaultSpecifiers.concat(t.isImportDefaultSpecifier(s) ? s : []),
+              importSpecifiers: acc.importSpecifiers.concat(t.isImportSpecifier(s) ? s : [])
+            }),
+            { importDefaultSpecifiers: [], importSpecifiers: [] }
+          );
+
+          const { importDefaultSpecifiers, importSpecifiers } = _imports;
           if (importDefaultSpecifiers.length && (value === 'buildo-react-components' || value === 'buildo-react-components/lib' || value === 'buildo-react-components/src')) {
             throw new Error(`the import of whole buildo-react-components is forbidden`);
           }
 
-          const importSpecifiers = node.specifiers.filter(t.isImportSpecifier);
           if (importSpecifiers.length) {
             importSpecifiers.forEach(s => imports.unshift({ local: s.local.name, imported: s.imported.name }));
           }
