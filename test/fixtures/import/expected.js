@@ -4,6 +4,5 @@ import { linkState as ls } from 'buildo-react-components/lib/link-state';
 import { getValueLink } from 'buildo-react-components/lib/link-state';
 import React from 'react';
 import { props, t, skinnable } from 'revenge';
-
 import { pick } from 'lodash/object/pick';
 import _TextOverflow from 'buildo-react-components/lib/text-overflow/TextOverflow';
