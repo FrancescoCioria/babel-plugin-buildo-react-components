@@ -1,4 +1,40 @@
-import { defaultImports, utils } from 'buildo-react-components/src/babel-plugin';
+const defaultImports = {
+  BackgroundDimmer: 'background-dimmer/BackgroundDimmer',
+  Badge: 'badge/Badge',
+  BasicModal: 'modal-manager/BasicModal',
+  Button: 'button/Button',
+  ConfirmationInput: 'confirmation-input/ConfirmationInput',
+  Divider: 'Divider/Divider',
+  Dropdown: 'dropdown/Dropdown',
+  DropdownMenu: 'DropdownMenu/DropdownMenu',
+  FlexView: 'flex/FlexView',
+  FlexCell: 'flex/FlexCell',
+  Icon: 'Icon/Icon',
+  LoadingSpinner: 'loading-spinner/LoadingSpinner',
+  Menu: 'DropdownMenu/Menu',
+  MobileDetector: 'mobile-detector/MobileDetector',
+  ModalManager: 'modal-manager/ModalManager',
+  MoreOrLess: 'more-or-less/MoreOrLess',
+  NavBar: 'nav-bar/NavBar',
+  Panel: 'Panel/Panel',
+  PanelHeader: 'Panel/PanelHeader',
+  PanelMenu: 'Panel/PanelMenu',
+  Popover: 'popover/Popover',
+  ScrollView: 'scroll/ScrollView',
+  TabbedPanel: 'Panel/TabbedPanel',
+  TextOverflow: 'text-overflow/TextOverflow',
+  TimerToast: 'toaster/TimerToast',
+  Toaster: 'toaster/Toaster',
+  Toggle: 'toggle/Toggle',
+  Tooltip: 'Tooltip/Tooltip',
+  TransitionWrapper: 'transition-wrapper/TransitionWrapper'
+};
+const utils = {
+  linkState: 'link-state',
+  getValueLink: 'link-state',
+  LinkedStateMixin: 'link-state',
+  ValueLinkMixin: 'link-state'
+};
 
 let imports;
 
