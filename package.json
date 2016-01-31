@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-buildo-react-components",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Babel plugin to avoid cherry-pick imports from buildo-react-components",
   "main": "lib/index.js",
   "scripts": {
