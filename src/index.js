@@ -24,26 +24,29 @@ export default function ({ Plugin, types: t }) {
     visitor: {
 
       Program: {
-        exit (node, parent, scope, file) {
+        enter() {
+          // clear global state
+          imports = [];
+        },
+        exit(node, parent, scope, file) {
           if (!t.isProgram(node)) {
             return;
           }
 
           imports.forEach(({ local, imported }) => {
-            if (!components[imported] && !utils[imported]) {
+            if (!defaultImports[imported] && !utils[imported]) {
               throw new Error(`${imported} is not a valid export of buildo-react-components`);
             }
-            const isDefaultImport = !!components[imported];
-            const folder = isDefaultImport ? components[imported] : utils[imported];
+            const isDefaultImport = !!defaultImports[imported];
+            const folder = isDefaultImport ? defaultImports[imported] : utils[imported];
             const path = ['buildo-react-components', 'lib', folder].join('/');
             addImport(file, path, imported, local, isDefaultImport);
           });
-
         }
       },
 
       ImportDeclaration: {
-        exit (node) {
+        exit(node) {
           if (node.source.value.indexOf('buildo-react-components') === -1) {
             return;
           }
