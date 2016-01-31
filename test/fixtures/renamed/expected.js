@@ -1,3 +1,3 @@
-import Flex from 'buildo-react-components/lib/flex/FlexView';
-import Popoup from 'buildo-react-components/lib/popover/Popover';
-import _TextOverflow from 'buildo-react-components/lib/text-overflow/TextOverflow';
+import Flex from 'buildo-react-components/src/flex/FlexView';
+import Popoup from 'buildo-react-components/src/popover/Popover';
+import _TextOverflow from 'buildo-react-components/src/text-overflow/TextOverflow';

@@ -39,7 +39,7 @@ export default function ({ Plugin, types: t }) {
             }
             const isDefaultImport = !!defaultImports[imported];
             const folder = isDefaultImport ? defaultImports[imported] : utils[imported];
-            const path = ['buildo-react-components', 'lib', folder].join('/');
+            const path = ['buildo-react-components', 'src', folder].join('/');
             addImport(file, path, imported, local, isDefaultImport);
           });
         }

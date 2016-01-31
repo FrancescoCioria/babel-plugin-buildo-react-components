@@ -1,1 +1,1 @@
-import flex, { FlexView } from 'buildo-react-components/lib/flex';
+import flex, { FlexView } from 'buildo-react-components/src/flex';
